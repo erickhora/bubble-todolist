@@ -13,7 +13,10 @@
                 required
               ></v-text-field>
               <div class="d-flex flex-row-reverse">
-                <v-btn rounded small @click="naoLogado = !naoLogado">Ir</v-btn>
+                <v-btn rounded small @click="naoLogado = !naoLogado">
+                  <router-link to="/cadastro" class="link-cadastro"> Ir </router-link>
+                </v-btn>
+                 
               </div>
             </v-card>
           </v-col>
@@ -98,5 +101,12 @@ export default {
   .theme--light.v-btn {
     color: white;
   }
+
+.link-cadastro{
+  color:white;
+  font-size: .75rem;
+  text-decoration: none;
+}
+  
 
 </style>
