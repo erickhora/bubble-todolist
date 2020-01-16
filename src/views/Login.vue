@@ -3,7 +3,7 @@
     <v-form  v-model="valid">
       <v-container style="d-flex justify-center align-center">
         <v-row>
-          <v-col cols="8" xs="4" class="login-box" v-if="naoLogado">
+          <v-col cols="8" xs="4" class="login-box" v-if="!naoLogado">
             <v-card :elevation="10" class="login-box-form">
               <p class="text-center">Acesse com seu email</p>
               <v-text-field
