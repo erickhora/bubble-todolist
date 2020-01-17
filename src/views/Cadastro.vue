@@ -1,13 +1,16 @@
 <template>
 <v-app id="cadastro">
-  <form class="formulario">
+  <v-form class="formulario" 
+    ref="form"
+    v-model="valid"
+    lazy-validation>
    <v-card elevation="20">
   
     <p class="text-center pt-8 font-weight-bold title mb-0"> cadastrar ?</p>
     <div class="formulario-input">
     <v-text-field 
       v-model="email"
-      :error-messages="emailErrors"
+      :rules="emailRules"
       label="e-mail"
       required
       filled
@@ -19,7 +22,7 @@
     ></v-text-field>
     <v-text-field
       v-model="nome"
-      :error-messages="nomeErrors"
+      :rules="nomeRules"
       label="nome completo"
       required
       filled
@@ -30,8 +33,8 @@
     ></v-text-field>
     <v-text-field
       v-model="usuário"
-      :error-messages="usuarioErrors"
       label="usuário"
+      :rules="usuarioRules"
       required
       filled
       background-color="#EFEBEB"
@@ -41,10 +44,11 @@
     ></v-text-field>
     <v-text-field
       v-model="senha"
-      :error-messages="senhaErrors"
+     :rules="senhaRules"
       label="senha"
       required
       filled
+      type="password"
       height="20"
       color="#50435D"
       @input="$v.email.$touch()"
@@ -61,16 +65,45 @@
    
   
    </v-card>
- </form>
+ </v-form>
  </v-app>
 </template>
 
 
-
 <script>
-export default {
-  data: () => ({})
-};
+
+  export default {
+    data: () => ({
+      valid: true,
+      name: '',
+      nomeRules: [
+        v => !!v || 'Campo Obrigatório',
+      ],
+      emailRules: [
+      v => !!v || 'Digite seu e-mail',
+      v => /.+@+.+/.test(v) || 'E-mail deve ser válido'
+    ],
+    usuarioRules:[
+      v=> !!v || 'Campo Obrigatório',
+    ],
+    senhaRules:[
+       v=> !!v || 'Campo Obrigatório',
+       v => (v && v.length >= 4) || 'A senha deve ter mais de 3 caracteres',
+    ]
+
+    }),
+
+    methods: {
+      validate () {
+        if (this.$refs.form.validate()) {
+          this.snackbar = true
+        }
+      },
+      resetValidation () {
+        this.$refs.form.resetValidation()
+      },
+    },
+  }
 </script>
 
 
