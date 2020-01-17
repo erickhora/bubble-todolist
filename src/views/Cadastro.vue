@@ -108,6 +108,16 @@
 
 
 <style scoped>
+ @import url('https://fonts.googleapis.com/css?family=Public+Sans:400,700&display=swap');
+
+
+*{
+   font-family: 'Public Sans', sans-serif;
+   font-weight: bold;
+   font-size: 1.2rem;
+}
+
+
 .formulario {
   display: flex;
   justify-content: center;
