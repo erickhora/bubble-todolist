@@ -1,5 +1,7 @@
 <template>
   <v-app id="login">
+    <!-- splash screen -->
+    <div class="login-splash" v-show="isActive" @click="isActive = !isActive"></div> 
     <v-form  v-model="valid">
       <v-container style="d-flex justify-center align-center">
         <v-row>
@@ -11,6 +13,7 @@
                 :rules="emailRules"
                 label="E-mail"
                 required
+                autofocus
               ></v-text-field>
               <div class="d-flex flex-row-reverse">
                 <v-btn rounded small @click="naoLogado = !naoLogado">
@@ -52,9 +55,11 @@
 </template>
 
 <script>
+/*  setTimeout(function() { console.log("setTimeout: Ja passou 1 segundo!");
+                      this.isActive= false }, 5000);  */
 export default {
   data: () => ({
-    mostrar: false,
+    isActive:true,
     senha: '',
     naoLogado: false,
     emailRules: [
@@ -64,6 +69,7 @@ export default {
     senhaRule: [
       v => !!v || 'Digite sua senha'
     ]
+  
   })
 }
 </script>
@@ -71,11 +77,15 @@ export default {
 <style scoped>
   @import url('https://fonts.googleapis.com/css?family=Public+Sans:400,700&display=swap');
 
+  
+
   * {
     font-family: 'Public Sans', sans-serif;
     font-weight: bold;
     font-size: 1.2rem;
   }
+
+  
 
   #login {
     background-color: #50435D;
@@ -107,6 +117,33 @@ export default {
   font-size: .75rem;
   text-decoration: none;
 }
-  
+  /* Splash screen */
+ 
+ .login-splash{
+  display:flex;
+  position: absolute;
+  background-image: url('../assets/splash.svg');
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  background-color:white;
+  z-index:1;
+  animation-name: fade-out;
+  animation-direction:normal;
+  animation-duration: 2s;
+  animation-iteration-count:initial;
+  animation-fill-mode: forwards;
+
+} 
+
+ @keyframes fade-out {
+  0%   { opacity: 1;}
+  25%  { opacity: 1;}
+  50%  { opacity: 1;}
+  75%  { opacity: 1;}
+  100% { opacity: 0;
+         } 
+}
+
 
 </style>
