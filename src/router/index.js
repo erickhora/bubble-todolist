@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../views/Login.vue'
 import Cadastro from '../views/Cadastro.vue'
+import Intro from '../views/Intro.vue'
 
 
 Vue.use(VueRouter)
@@ -9,8 +10,8 @@ Vue.use(VueRouter)
 const routes = [
   {
     path:'/',
-    name:Login,
-    component:Login
+    name:'Intro',
+    component:Intro
   },
   {
     path: '/cadastro',
@@ -18,6 +19,11 @@ const routes = [
     component:Cadastro
 
   },
+  {
+    path:'/login',
+    name:'Login',
+    component:Login
+  }
   
 ]
 
