@@ -13,46 +13,36 @@
       :rules="emailRules"
       label="e-mail"
       required
-      filled
       autofocus
        color="#50435D"
        background-color="#EFEBEB"
-      @input="$v.name.$touch()"
-      @blur="$v.name.$touch()"
     ></v-text-field>
     <v-text-field
       v-model="nome"
       :rules="nomeRules"
       label="nome completo"
       required
-      filled
       color="#50435D"
       background-color="#EFEBEB"
-      @input="$v.email.$touch()"
-      @blur="$v.email.$touch()"
     ></v-text-field>
     <v-text-field
       v-model="usuário"
       label="usuário"
       :rules="usuarioRules"
       required
-      filled
       background-color="#EFEBEB"
        color="#50435D"
-      @input="$v.email.$touch()"
-      @blur="$v.email.$touch()"
     ></v-text-field>
     <v-text-field
       v-model="senha"
-     :rules="senhaRules"
+      :rules="senhaRules"
       label="senha"
       required
-      filled
-      type="password"
-      height="20"
+      background-color="#EFEBEB"
+      :type="mostrarSenha ? 'text' : 'password'"
       color="#50435D"
-      @input="$v.email.$touch()"
-      @blur="$v.email.$touch()"
+      @click:append="mostrarSenha = !mostrarSenha"
+      :append-icon="mostrarSenha ? 'mdi-eye' : 'mdi-eye-off'"
     ></v-text-field>
     </div>
     <div class="botoes">
@@ -60,6 +50,7 @@
              <router-link to="/" class="link-cadastro"> Voltar </router-link>
          </v-btn>
           
+          <!-- adicionar a classe link-cadastro quando adicionar o router-link -->
          <v-btn rounded x-small class="mb-5" @click="submit">Cadastrar</v-btn>
     </div>
    
@@ -75,7 +66,11 @@
   export default {
     data: () => ({
       valid: true,
-      name: '',
+      mostrarSenha: false,
+      nome: '',
+      senha:'',
+      usuário:'',
+      email:'',
       nomeRules: [
         v => !!v || 'Campo Obrigatório',
       ],

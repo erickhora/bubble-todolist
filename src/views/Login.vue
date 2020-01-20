@@ -12,6 +12,7 @@
                 label="E-mail"
                 required
                 autofocus
+                color="#50435D"
               ></v-text-field>
               <div class="d-flex flex-row-reverse">
                 <v-btn rounded small @click="naoLogado = !naoLogado">
@@ -30,6 +31,7 @@
                 :rules="emailRules"
                 label="E-mail"
                 required
+                color="#50435D"
               ></v-text-field>
               <v-text-field
                 v-model="senha"
@@ -39,6 +41,7 @@
                 name="senha"
                 label="Senha"
                 required
+                color="#50435D"
                 @click:append="mostrar = !mostrar"
               ></v-text-field>
               <div class="d-flex flex-row-reverse">
@@ -58,6 +61,8 @@
 export default {
   data: () => ({
     senha: '',
+    email:'',
+    valid:'',
     naoLogado: false,
     emailRules: [
       v => !!v || 'Digite seu e-mail',
