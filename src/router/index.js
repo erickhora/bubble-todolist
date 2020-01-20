@@ -27,9 +27,16 @@ const routes = [
   },
   {
     path:'/home',
+<<<<<<< HEAD
     name:'Home',
     component:Home
   }
+=======
+    name:'home',
+    component:Home
+  },
+  
+>>>>>>> 89e6231b5774b3be96698f35940c2ccfd6ace255
 ]
 
 const router = new VueRouter({

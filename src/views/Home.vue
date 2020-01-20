@@ -1,5 +1,6 @@
 <template>
   <v-app id="home">
+<<<<<<< HEAD
       <v-col class="col-xs-12">
         <v-container id="home-dia">
             <p class="text-center">HOJE</p>
@@ -108,3 +109,40 @@ export default {
     }
     
 </style>
+=======
+     <!--  <app-navbar> teste </app-navbar>  -->
+     <app-navbar/>
+  </v-app>
+</template>
+
+
+
+
+<script>
+import Navbar from '../components/Navbar.vue'
+
+export default {
+  data: () => ({
+
+  
+  }),
+  components: {'app-navbar': Navbar}
+}
+</script>
+
+
+
+
+<style scoped>
+  @import url('https://fonts.googleapis.com/css?family=Public+Sans:400,700&display=swap');
+
+  
+
+  * {
+    font-family: 'Public Sans', sans-serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+</style>
+>>>>>>> 89e6231b5774b3be96698f35940c2ccfd6ace255

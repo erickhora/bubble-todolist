@@ -2,8 +2,8 @@
   <v-app id="login">
     <v-form  v-model="valid">
       <v-container style="d-flex justify-center align-center">
-        <v-row>
-          <v-col cols="8" xs="4" class="login-box" v-if="!naoLogado">
+        
+          <v-col cols="12" xs="6" class="login-box" v-if="!naoLogado">
             <v-card :elevation="10" class="login-box-form">
               <p class="text-center">Acesse com seu email</p>
               <v-text-field
@@ -49,7 +49,6 @@
               </div>
             </v-card>
           </v-col>
-        </v-row>
       </v-container>
     </v-form>
   </v-app>
@@ -94,11 +93,15 @@ export default {
     background-image: url('../assets/Celular_Android_–_12.svg');
     background-size: cover;
     background-repeat: no-repeat;
+    background-position-y: bottom;
   }
 
   .login-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0 auto;
-    margin-top: 50%;
+    margin-top: 30vh;
   }
 
   .login-box-form {
