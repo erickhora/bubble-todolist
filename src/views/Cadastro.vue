@@ -31,7 +31,7 @@
       :rules="usuarioRules"
       required
       background-color="#EFEBEB"
-       color="#50435D"
+      color="#50435D"
     ></v-text-field>
     <v-text-field
       v-model="senha"
@@ -117,7 +117,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top:20%;
+  margin-top:20vh;
   padding: 5px;
 }
 

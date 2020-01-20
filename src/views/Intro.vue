@@ -58,6 +58,7 @@ export default {
       background-image: url('../assets/Celular_Android_–_12.svg');
       background-size: cover;
       overflow: hidden;
+      background-position-y: bottom;
   }
   .intro-logo{
       display: flex;
@@ -81,17 +82,17 @@ export default {
   }
 
   .logo-info-voltar{
-      color: white;
-      font-family: 'Amatic SC', cursive;
-      font-size: 3rem;
-      font-weight: normal;
+    color: white;
+    font-family: 'Amatic SC', cursive;
+    font-size: 3rem;
+    font-weight: normal;
   }
 
   .intro-logo-bubble{
-      color: white;
-      font-family: 'Amatic SC', cursive;
-      font-size: 7rem;
-      font-weight: normal;
+    color: white;
+    font-family: 'Amatic SC', cursive;
+    font-size: 7rem;
+    font-weight: normal;
 
   }
 
