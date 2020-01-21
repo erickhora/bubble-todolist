@@ -7,9 +7,9 @@
         <v-container id="home-tarefas">
             <v-list rounded>
                 <v-list-item-group v-model="item" color="primary">
-                    <v-dialog v-model="dialog">
+                    <v-dialog v-model="dialog" persistent>
                         <template v-slot:activator="{ on }">
-                            <v-list-item v-for="(item, i) in items" :key="i" @click="enviarIndice(i)">
+                            <v-list-item v-for="(item, i) in items" :key="i" @click="j = i">
                                 <v-list-item-icon>
                                     <v-icon v-text="item.icon"></v-icon>
                                 </v-list-item-icon>
@@ -20,10 +20,10 @@
                         </template>
                         <v-card v-model="items">
                             <v-card-title>
-                                {{ items[item].title }}
+                                {{ items[j].title }}
                             </v-card-title>
                             <v-card-text>
-                                {{ items[item].content }}
+                                {{ items[j].content }}
                             </v-card-text>
                             <v-divider></v-divider>
                             <v-card-actions>
@@ -35,8 +35,28 @@
                 </v-list-item-group>
             </v-list>
         </v-container>
-        <v-container class="purple">
-            <p>LOREM IPSUM</p>
+        <v-container class="d-block text-center">
+            <v-dialog v-model="dialog2">
+                <template v-slot:activator="{ on }">
+                    <v-btn class="mx-2" fab dark large color="purple" v-on="on">
+                        <v-icon dark>mdi-plus</v-icon>
+                    </v-btn>
+                </template>
+                <v-card>
+                    <v-card-title>Nova Tarefa</v-card-title>
+                    <v-card-text>
+                        <v-form>
+                            <v-text-field v-model="title" :counter="20" label="Titulo"></v-text-field>
+                            <v-textarea v-model="content" :counter="120" label="Descrição" required></v-textarea>
+                        </v-form>
+                    </v-card-text>
+                    <v-divider></v-divider>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="purple" submit @click="dialog2 = false">Salvar</v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
         </v-container>
       </v-col>
   </v-app>
@@ -47,7 +67,10 @@ export default {
 
  data: () => ({
         dialog: false,
-        j: null,
+        dialog2: false,
+        j: 0,
+        title: '',
+        content: '',
         item: 1,
         items: [
             {
@@ -84,9 +107,9 @@ export default {
     }),
 
     methods: {
-        enviarIndice: (i) => {
-            this.j = i;
-        }
+        // enviarIndice: (i) => {
+        //     this.j = i;
+        // }
     },
 }
 </script>
@@ -105,6 +128,15 @@ export default {
         font-family: 'Public Sans', sans-serif;
         font-weight: bold;
         /* text-align: center; */
+        color: #A09E9E;
+    }
+
+    .theme--light.v-list {
+        background: #fafafa;
+    }
+
+    .v-list--rounded {
+        padding: 0;
     }
     
 </style>
