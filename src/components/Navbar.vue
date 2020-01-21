@@ -1,79 +1,81 @@
 <template>
-  <v-container>
+  <v-sheet
+    height="100%"
+    class="overflow-hidden"
+    style="position: relative;"
+  >
     
+<v-toolbar dense>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"> </v-app-bar-nav-icon>
 
-    <v-card
-      height="2000"
+      <v-toolbar-title class="title" >{{nome}} List</v-toolbar-title>
+
+</v-toolbar>
+   
+
+    <v-navigation-drawer
+      v-model="drawer"
+      absolute
+      temporary
     >
-      <v-navigation-drawer
-        v-model="drawer"
-        :color="color"
-        :expand-on-hover="expandOnHover"
-        :mini-variant="miniVariant"
-        :right="right"
-        :src="bg"
-        absolute
-        dark
-      >
-        <v-list
-          dense
-          nav
-          class="py-0"
+      <v-list-item>
+        <v-list-item-avatar>
+          <v-img src="https://randomuser.me/api/portraits/men/78.jpg"></v-img>
+        </v-list-item-avatar>
+
+        <v-list-item-content>
+          <v-list-item-title>{{nome}}</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list dense class="menu">
+
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          link
         >
-          <v-list-item two-line :class="miniVariant && 'px-0'">
-            <v-list-item-avatar>
-              <img src="https://randomuser.me/api/portraits/men/81.jpg">
-            </v-list-item-avatar>
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
 
-            <v-list-item-content>
-              <v-list-item-title>Application</v-list-item-title>
-              <v-list-item-subtitle>Subtext</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-divider></v-divider>
-
-          <v-list-item
-            v-for="item in items"
-            :key="item.title"
-            link
-          >
-            <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-content>
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </v-navigation-drawer>
-    </v-card>
-  </v-container>
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+  </v-sheet>
 </template>
 
 
 <script>
-  export default {
+export default {
     data () {
       return {
-        drawer: true,
+        nome:"Fulano",
+        drawer: null,
         items: [
-          { title: 'Dashboard', icon: 'mdi-view-dashboard' },
-          { title: 'Photos', icon: 'mdi-image' },
-          { title: 'About', icon: 'mdi-help-box' },
+          { title: 'Meus dados', icon: '' },
+          { title: 'Privacidade', icon: '' },
+          { title: 'Calendário', icon: '' },
         ],
-        color: 'primary',
-        right: false,
-        miniVariant: false,
-        expandOnHover: false,
-        background: false,
       }
-    },
-    computed: {
-      bg () {
-        return this.background ? 'https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg' : undefined
-      },
     },
   }
 </script>
+
+<style scoped>
+ @import url('https://fonts.googleapis.com/css?family=Amatic+SC&display=swap');
+
+.title{
+  margin-left:25vw;
+  font-family: 'Amatic SC', cursive !important;
+}
+
+.menu{
+  margin-top:10vh;
+}
+</style>
