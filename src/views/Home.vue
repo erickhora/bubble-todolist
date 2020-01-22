@@ -1,5 +1,6 @@
 <template>
   <v-app id="home">
+      <app-navbar></app-navbar>
       <v-col class="col-xs-12">
         <v-container id="home-dia">
             <p class="text-center">HOJE</p>
@@ -66,9 +67,9 @@
 <script>
 import Navbar from '../components/Navbar.vue'
 export default {
-    components: {'app-navbar': Navbar}
+    components: {'app-navbar': Navbar},
 
- data: () => ({
+    data: () => ({
         dialog: false,
         dialog2: false,
         j: 0,
