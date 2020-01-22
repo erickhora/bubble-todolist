@@ -51,7 +51,9 @@
          </v-btn>
           
           <!-- adicionar a classe link-cadastro quando adicionar o router-link -->
-         <v-btn rounded x-small class="mb-5" @click="submit">Cadastrar</v-btn>
+         <v-btn rounded x-small class="mb-5" @click="submit">
+           <router-link to="/home" class="link-cadastro"> Cadastrar </router-link>
+         </v-btn>
     </div>
    
   
