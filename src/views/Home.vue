@@ -125,7 +125,6 @@ export default {
     methods: {
         submit() {
             this.items.push(this.addItem);
-            console.log(this.items);
         }
     },
 }
