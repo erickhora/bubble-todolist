@@ -1,10 +1,13 @@
 <template>
   <v-app id="home">
+      <app-navbar/>
       <v-col class="col-xs-12">
-        <v-container id="home-dia">
-            <p class="text-center">HOJE</p>
+          
+        <v-container id="home-dia" class="pa-0">
+            <p class="text-center ma-0">HOJE</p>
         </v-container>
-        <v-container id="home-tarefas">
+        <v-container id="home-tarefas" class="pa-0">
+            
             <v-list rounded>
                 <v-list-item-group v-model="item" color="primary">
                     <v-dialog v-model="dialog" persistent>
@@ -66,7 +69,7 @@
 <script>
 import Navbar from '../components/Navbar.vue'
 export default {
-    components: {'app-navbar': Navbar}
+    components: {'app-navbar': Navbar},
 
  data: () => ({
         dialog: false,
