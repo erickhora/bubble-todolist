@@ -9,7 +9,6 @@
      
       scroll-target="#scrolling-techniques" dense height="60px">
       <v-app-bar-nav-icon @click="drawer = !drawer"> </v-app-bar-nav-icon>
-
       <v-toolbar-title class="title" >{{nome}} List</v-toolbar-title>
 
 </v-toolbar>
@@ -17,8 +16,8 @@
 
     <v-navigation-drawer
       v-model="drawer"
-      absolute
-      temporary
+      app
+      left
     >
     
       <v-list-item>
@@ -75,7 +74,7 @@ export default {
  @import url('https://fonts.googleapis.com/css?family=Amatic+SC&display=swap');
 
 .title{
-  margin: 0 auto;
+  margin-left: 8vh;
   font-family: 'Amatic SC', cursive !important;
 }
 
@@ -88,9 +87,16 @@ export default {
 }
 
 .v-application .headline, .v-application .title {
-     line-height: 5rem;
+     line-height: 6rem;
      font-family: 'Amatic SC'!important;
      font-weight: bold;
-     letter-spacing: 0;
+     font-size:1.5rem !important;
+     letter-spacing: 0.3025em!important;
+}
+
+.v-sheet {
+    border-radius: 1px;
+    height: 50px!important;
+    position:inherit;
 }
 </style>
