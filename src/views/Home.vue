@@ -14,7 +14,7 @@
                                     <v-icon v-text="item.icon"></v-icon>
                                 </v-list-item-icon>
                                 <v-list-item-content> 
-                                    <v-list-item-title v-text="item.title" v-on="on"></v-list-item-title>
+                                    <v-list-item-title v-text="item.title" v-on="on"> </v-list-item-title>
                                 </v-list-item-content>
                             </v-list-item>
                         </template>
@@ -38,7 +38,7 @@
         <v-container class="d-block text-center">
             <v-dialog v-model="dialog2">
                 <template v-slot:activator="{ on }">
-                    <v-btn class="mx-2" fab dark large color="purple" v-on="on">
+                    <v-btn class="mx-2" fab large v-on="on">
                         <v-icon dark>mdi-plus</v-icon>
                     </v-btn>
                 </template>
@@ -46,14 +46,15 @@
                     <v-card-title>Nova Tarefa</v-card-title>
                     <v-card-text>
                         <v-form>
-                            <v-text-field v-model="title" :counter="20" label="Titulo"></v-text-field>
-                            <v-textarea v-model="content" :counter="120" label="Descrição" required></v-textarea>
+                            <v-text-field v-model="addItem.title" :counter="20" label="Titulo"></v-text-field>
+                            <v-textarea v-model="addItem.content" :counter="120" label="Descrição" required></v-textarea>
+                            <v-select v-model="addItem.categoria" :items="categorias" label="Selecione uma categoria"></v-select>
                         </v-form>
                     </v-card-text>
                     <v-divider></v-divider>
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn color="purple" submit @click="dialog2 = false">Salvar</v-btn>
+                        <v-btn submit @click="dialog2 = false; submit()">Salvar</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-dialog>
@@ -69,47 +70,58 @@ export default {
         dialog: false,
         dialog2: false,
         j: 0,
-        title: '',
-        content: '',
+        addItem: {
+            title: '',
+            content: '',
+            categoria: '',
+            icon: ''
+        },
         item: 1,
+        categorias: ['Comida', 'Saúde', 'Trabalho', 'Finanças', 'Amor', 'Lazer'],
         items: [
             {
-                title: "Comida",
+                title: "Compras do dia",
                 content: "compŕar pão e queijo",
-                icon: "mdi-food"
+                icon: "mdi-food",
+                categoria: "Comida"
             },
             {
-                title: "Saúde",
+                title: "Marcar consultas",
                 content: "marcar clinico geral e dentista",
-                icon: "mdi-hospital"
+                icon: "mdi-hospital",
+                categoria: "Saúde"
             },
             {
-                title: "Trabalho",
+                title: "Decisões no trabalho",
                 content: "definir quem deve ser demitido",
-                icon: "mdi-briefcase"
+                icon: "mdi-briefcase",
+                categoria: "Trabalho"
             },
             {
-                title: "Finanças",
+                title: "Metas financeiras",
                 content: "Conseguir um milhão em 1 min",
-                icon: "mdi-cash"
+                icon: "mdi-cash",
+                categoria: "Finanças"
             },
             {
-                title: "Amor",
+                title: "Planos para a vida",
                 content: "Aprender hipnose para conseguir alguém",
-                icon: "mdi-heart"
+                icon: "mdi-heart",
+                categoria: "Amor"
             },
             {
-                title: "Lazer",
+                title: "Viagens",
                 content: "Planejar o próximo salto de paraquedas",
-                icon: "mdi-balloon"
+                icon: "mdi-balloon",
+                categoria: "Lazer"
             },
         ],
     }),
-
     methods: {
-        // enviarIndice: (i) => {
-        //     this.j = i;
-        // }
+        submit() {
+            this.items.push(this.addItem);
+            console.log(this.items);
+        }
     },
 }
 </script>
@@ -139,4 +151,8 @@ export default {
         padding: 0;
     }
     
+    .theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
+        background-color: #50435D;
+        color:white;
+    }
 </style>
