@@ -64,7 +64,9 @@
 </template>
 
 <script>
+import Navbar from '../components/Navbar.vue'
 export default {
+    components: {'app-navbar': Navbar}
 
  data: () => ({
         dialog: false,
