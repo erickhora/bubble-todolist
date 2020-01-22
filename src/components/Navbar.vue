@@ -5,8 +5,10 @@
     style="position: relative;"
   >
     
-<v-toolbar dense>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"> </v-app-bar-nav-icon>
+<v-toolbar 
+     
+      scroll-target="#scrolling-techniques" dense height="60px">
+      <v-app-bar-nav-icon @click="drawer = !drawer"> </v-app-bar-nav-icon>
 
       <v-toolbar-title class="title" >{{nome}} List</v-toolbar-title>
 
@@ -18,14 +20,16 @@
       absolute
       temporary
     >
+    
       <v-list-item>
         <v-list-item-avatar>
           <v-img src="https://randomuser.me/api/portraits/men/78.jpg"></v-img>
         </v-list-item-avatar>
 
         <v-list-item-content>
-          <v-list-item-title>{{nome}}</v-list-item-title>
+          <v-list-item-title>{{nome}}</v-list-item-title> 
         </v-list-item-content>
+        <v-icon @click="drawer = !drawer"> mdi-close </v-icon>
       </v-list-item>
 
       <v-divider></v-divider>
@@ -58,9 +62,9 @@ export default {
         nome:"Fulano",
         drawer: null,
         items: [
-          { title: 'Meus dados', icon: '' },
-          { title: 'Privacidade', icon: '' },
-          { title: 'Calendário', icon: '' },
+          { title: 'Meus dados', icon: 'mdi-account' },
+          { title: 'Privacidade', icon: 'mdi-lock' },
+          { title: 'Calendário', icon: 'mdi-calendar-month' },
         ],
       }
     },
@@ -71,11 +75,22 @@ export default {
  @import url('https://fonts.googleapis.com/css?family=Amatic+SC&display=swap');
 
 .title{
-  margin-left:25vw;
+  margin: 0 auto;
   font-family: 'Amatic SC', cursive !important;
+}
+
+.v-application--is-ltr .v-toolbar__content>.v-btn.v-btn--icon:first-child+.v-toolbar__title, .v-application--is-ltr .v-toolbar__extension>.v-btn.v-btn--icon:first-child+.v-toolbar__title {
+     padding-left: 0px;
 }
 
 .menu{
   margin-top:10vh;
+}
+
+.v-application .headline, .v-application .title {
+     line-height: 5rem;
+     font-family: 'Amatic SC'!important;
+     font-weight: bold;
+     letter-spacing: 0;
 }
 </style>
