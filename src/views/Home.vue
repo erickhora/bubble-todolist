@@ -135,7 +135,6 @@ export default {
     },
     computed: {
         itemsAtualizados(){
-            console.log(this.items);
             return this.items;
         }
     }
