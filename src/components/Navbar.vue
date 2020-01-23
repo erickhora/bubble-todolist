@@ -5,9 +5,7 @@
     style="position: relative;"
   >
     
-<v-toolbar 
-     
-      scroll-target="#scrolling-techniques" dense height="60px">
+<v-toolbar dense height="60px">
       <v-app-bar-nav-icon @click="drawer = !drawer"> </v-app-bar-nav-icon>
       <v-toolbar-title class="title" >{{nome}} List</v-toolbar-title>
 

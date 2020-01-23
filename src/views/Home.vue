@@ -9,33 +9,33 @@
         <v-container id="home-tarefas" class="pa-0">
             
             <v-list rounded>
-                <v-list-item-group v-model="item" color="primary">
-                    <v-dialog v-model="dialog" persistent>
-                        <template v-slot:activator="{ on }">
-                            <v-list-item v-for="(item, i) in items" :key="i" @click="j = i">
+                <v-dialog v-model="dialog" persistent>
+                    <template v-slot:activator="{ on }">
+                        <v-list-item-group v-model="item" color="primary">
+                            <v-list-item v-for="(item, i) in itemsAtualizados" :key="i" @click="j = i" v-on="on">
                                 <v-list-item-icon>
-                                    <v-icon v-text="item.icon"></v-icon>
+                                    <v-icon v-text="item.icone"></v-icon>
                                 </v-list-item-icon>
                                 <v-list-item-content> 
-                                    <v-list-item-title v-text="item.title" v-on="on"> </v-list-item-title>
+                                    <v-list-item-title v-text="item.titulo"> </v-list-item-title>
                                 </v-list-item-content>
                             </v-list-item>
-                        </template>
-                        <v-card v-model="items">
-                            <v-card-title>
-                                {{ items[j].title }}
-                            </v-card-title>
-                            <v-card-text>
-                                {{ items[j].content }}
-                            </v-card-text>
-                            <v-divider></v-divider>
-                            <v-card-actions>
-                                <v-spacer></v-spacer>
-                                <v-btn color="primary" text @click="dialog =false">Fechar</v-btn>
-                            </v-card-actions>
-                        </v-card>
-                    </v-dialog>
-                </v-list-item-group>
+                        </v-list-item-group>
+                    </template>
+                    <v-card v-model="itemsAtualizados">
+                        <v-card-title>
+                            {{ itemsAtualizados[j].titulo }}
+                        </v-card-title>
+                        <v-card-text>
+                            {{ itemsAtualizados[j].conteudo }}
+                        </v-card-text>
+                        <v-divider></v-divider>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn color="primary" text @click="dialog =false">Fechar</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
             </v-list>
         </v-container>
         <v-container class="d-block text-center">
@@ -49,8 +49,8 @@
                     <v-card-title>Nova Tarefa</v-card-title>
                     <v-card-text>
                         <v-form>
-                            <v-text-field v-model="addItem.title" :counter="20" label="Titulo"></v-text-field>
-                            <v-textarea v-model="addItem.content" :counter="120" label="Descrição" required></v-textarea>
+                            <v-text-field v-model="addItem.titulo" :counter="20" label="Titulo"></v-text-field>
+                            <v-textarea v-model="addItem.conteudo" :counter="120" label="Descrição" required></v-textarea>
                             <v-select v-model="addItem.categoria" :items="categorias" label="Selecione uma categoria"></v-select>
                         </v-form>
                     </v-card-text>
@@ -76,57 +76,69 @@ export default {
         dialog2: false,
         j: 0,
         addItem: {
-            title: '',
-            content: '',
+            titulo: '',
+            conteudo: '',
             categoria: '',
-            icon: ''
+            icone: ''
         },
         item: 1,
         categorias: ['Comida', 'Saúde', 'Trabalho', 'Finanças', 'Amor', 'Lazer'],
         items: [
             {
-                title: "Compras do dia",
-                content: "compŕar pão e queijo",
-                icon: "mdi-food",
+                titulo: "Compras do dia",
+                conteudo: "compŕar pão e queijo",
+                icone: "mdi-food",
                 categoria: "Comida"
             },
             {
-                title: "Marcar consultas",
-                content: "marcar clinico geral e dentista",
-                icon: "mdi-hospital",
+                titulo: "Marcar consultas",
+                conteudo: "marcar clinico geral e dentista",
+                icone: "mdi-hospital",
                 categoria: "Saúde"
             },
             {
-                title: "Decisões no trabalho",
-                content: "definir quem deve ser demitido",
-                icon: "mdi-briefcase",
+                titulo: "Decisões no trabalho",
+                conteudo: "definir quem deve ser demitido",
+                icone: "mdi-briefcase",
                 categoria: "Trabalho"
             },
             {
-                title: "Metas financeiras",
-                content: "Conseguir um milhão em 1 min",
-                icon: "mdi-cash",
+                titulo: "Metas financeiras",
+                conteudo: "Conseguir um milhão em 1 min",
+                icone: "mdi-cash",
                 categoria: "Finanças"
             },
             {
-                title: "Planos para a vida",
-                content: "Aprender hipnose para conseguir alguém",
-                icon: "mdi-heart",
+                titulo: "Planos para a vida",
+                conteudo: "Aprender hipnose para conseguir alguém",
+                icone: "mdi-heart",
                 categoria: "Amor"
             },
             {
-                title: "Viagens",
-                content: "Planejar o próximo salto de paraquedas",
-                icon: "mdi-balloon",
+                titulo: "Viagens",
+                conteudo: "Planejar o próximo salto de paraquedas",
+                icone: "mdi-balloon",
                 categoria: "Lazer"
-            },
-        ],
+            }
+        ]
     }),
     methods: {
         submit() {
             this.items.push(this.addItem);
+            this.addItem = {
+                titulo: '',
+                conteudo: '',
+                categoria: '',
+                icone: ''
+            }
         }
     },
+    computed: {
+        itemsAtualizados(){
+            console.log(this.items);
+            return this.items;
+        }
+    }
 }
 </script>
 
