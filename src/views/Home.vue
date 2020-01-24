@@ -1,7 +1,7 @@
 <template>
   <v-app id="home">
       <app-navbar/>
-      <v-col class="col-xs-12">
+      <v-col class="col-xs-12 home-body">
           
         <v-container id="home-dia" class="pa-0">
             <p class="text-center ma-0">HOJE</p>
@@ -38,6 +38,7 @@
                         <v-divider></v-divider>
                         <v-card-actions>
                             <v-spacer></v-spacer>
+                            <v-btn color="danger" text @click="dialog = false">Excluir</v-btn>
                             <v-btn color="primary" text @click="dialog =false">Fechar</v-btn>
                         </v-card-actions>
                     </v-card>
@@ -63,6 +64,7 @@
                     <v-divider></v-divider>
                     <v-card-actions>
                         <v-spacer></v-spacer>
+                        <v-btn color="danger" @click="dialog2 = false">Cancelar</v-btn>
                         <v-btn submit @click="dialog2 = false; submit()">Salvar</v-btn>
                     </v-card-actions>
                 </v-card>
