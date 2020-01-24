@@ -6,8 +6,14 @@
         <v-container id="home-dia" class="pa-0">
             <p class="text-center ma-0">HOJE</p>
         </v-container>
-        <v-container id="home-tarefas" class="pa-0">
-            
+
+        <v-container id="home-semTarefas" v-if="items.length == 0" class="mt-5 mb-5 text-center">
+            <h3>Você não tem nenhuma tarefa hoje!</h3>
+            <v-icon size="5rem" class="d-block">mdi-emoticon-happy-outline</v-icon>
+            <h4 class="mt-5">Crie uma nova tarefa abaixo!</h4>
+        </v-container>
+
+        <v-container id="home-tarefas" class="pa-0" v-else>
             <v-list rounded>
                 <v-dialog v-model="dialog" persistent>
                     <template v-slot:activator="{ on }">
@@ -39,7 +45,7 @@
             </v-list>
         </v-container>
         <v-container class="d-block text-center">
-            <v-dialog v-model="dialog2">
+            <v-dialog v-model="dialog2" persistent>
                 <template v-slot:activator="{ on }">
                     <v-btn class="mx-2" fab large v-on="on">
                         <v-icon dark>mdi-plus</v-icon>
@@ -48,10 +54,10 @@
                 <v-card>
                     <v-card-title>Nova Tarefa</v-card-title>
                     <v-card-text>
-                        <v-form>
-                            <v-text-field v-model="addItem.titulo" :counter="20" label="Titulo"></v-text-field>
-                            <v-textarea v-model="addItem.conteudo" :counter="120" label="Descrição" required></v-textarea>
-                            <v-select v-model="addItem.categoria" :items="categorias" label="Selecione uma categoria"></v-select>
+                        <v-form v-model="valid">
+                            <v-text-field v-model="addItem.titulo" :rules="tituloRules" :counter="20" label="Titulo" required></v-text-field>
+                            <v-textarea v-model="addItem.conteudo" :rules="conteudoRules" :counter="120" label="Descrição" required></v-textarea>
+                            <v-select v-model="addItem.categoria" :rules="categoriaRules" :items="categorias" label="Selecione uma categoria" required></v-select>
                         </v-form>
                     </v-card-text>
                     <v-divider></v-divider>
@@ -74,7 +80,18 @@ export default {
     data: () => ({
         dialog: false,
         dialog2: false,
+        valid: '',
+        icone: "mdi-emoticon-happy-outline",
         j: 0,
+        tituloRules: [
+            v => !!v || 'Digite um título para a tarefa'
+        ],
+        conteudoRules: [
+            v => !!v || 'Digite um conteúdo para a tarefa'
+        ],
+        categoriaRules: [
+            v => !!v || 'Escolha uma categoria para a tarefa'
+        ],
         addItem: {
             titulo: '',
             conteudo: '',
@@ -83,47 +100,30 @@ export default {
         },
         item: 1,
         categorias: ['Comida', 'Saúde', 'Trabalho', 'Finanças', 'Amor', 'Lazer'],
-        items: [
-            {
-                titulo: "Compras do dia",
-                conteudo: "compŕar pão e queijo",
-                icone: "mdi-food",
-                categoria: "Comida"
-            },
-            {
-                titulo: "Marcar consultas",
-                conteudo: "marcar clinico geral e dentista",
-                icone: "mdi-hospital",
-                categoria: "Saúde"
-            },
-            {
-                titulo: "Decisões no trabalho",
-                conteudo: "definir quem deve ser demitido",
-                icone: "mdi-briefcase",
-                categoria: "Trabalho"
-            },
-            {
-                titulo: "Metas financeiras",
-                conteudo: "Conseguir um milhão em 1 min",
-                icone: "mdi-cash",
-                categoria: "Finanças"
-            },
-            {
-                titulo: "Planos para a vida",
-                conteudo: "Aprender hipnose para conseguir alguém",
-                icone: "mdi-heart",
-                categoria: "Amor"
-            },
-            {
-                titulo: "Viagens",
-                conteudo: "Planejar o próximo salto de paraquedas",
-                icone: "mdi-balloon",
-                categoria: "Lazer"
-            }
-        ]
+        items: []
     }),
     methods: {
         submit() {
+            switch(this.addItem.categoria) {
+                case 'Comida':
+                    this.addItem.icone = 'mdi-food'
+                    break
+                case 'Saúde':
+                    this.addItem.icone = 'mdi-hospital'
+                    break
+                case 'Trabalho':
+                    this.addItem.icone = 'mdi-briefcase'
+                    break     
+                case 'Finanças':
+                    this.addItem.icone = 'mdi-cash'
+                    break
+                case 'Amor':
+                    this.addItem.icone = 'mdi-heart'
+                    break
+                case 'Lazer':
+                    this.addItem.icone = 'mdi-balloon'
+                    break            
+            }
             this.items.push(this.addItem);
             this.addItem = {
                 titulo: '',
@@ -149,6 +149,12 @@ export default {
         font-family: 'Amatic SC', cursive;
         color: black;
         font-size: 3rem;
+    }
+
+    #home-semTarefas {
+        font-family: 'Amatic SC', cursive;
+        color: black;
+        letter-spacing: 3px;
     }
 
     #home-tarefas {

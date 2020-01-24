@@ -57,7 +57,7 @@ export default {
     data () {
       return {
         nome:"Fulano",
-        drawer: null,
+        drawer: false,
         items: [
           { title: 'Meus dados', icon: 'mdi-account' },
           { title: 'Privacidade', icon: 'mdi-lock' },
