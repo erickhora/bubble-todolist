@@ -78,7 +78,7 @@ export default {
       color:white;
       font-family: 'Public Sans', sans-serif;
       font-size: 1.1rem;
-      margin: 0px 15px 0px 15px;
+      margin: 0px 15px 100px 15px;
   }
 
   .logo-info-voltar{
@@ -93,6 +93,7 @@ export default {
     font-family: 'Amatic SC', cursive;
     font-size: 7rem;
     font-weight: normal;
+    cursor:pointer;
 
   }
 
