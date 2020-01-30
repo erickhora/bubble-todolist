@@ -64,8 +64,6 @@
 </template>
 
 <script>
-/*  setTimeout(function() { console.log("setTimeout: Ja passou 1 segundo!");
-                      this.isActive= false }, 5000);  */
 export default {
   data: () => ({
     mostrar: '',
@@ -85,6 +83,9 @@ export default {
     ]
   
   }),
+
+  props: [],
+
   methods: {
     checarEmail () {
       this.checandoEmail = true
@@ -119,6 +120,7 @@ export default {
           Object.keys(res.data).forEach(id => {
             if (this.usuario.email == res.data[id].email) {
               if(this.usuario.senha == res.data[id].senha) {
+                this.$emit('email', this.usuario.email)
                 this.$router.push('/home')
               } else {
                 console.log('Senha errada')
