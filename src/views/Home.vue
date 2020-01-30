@@ -101,7 +101,7 @@ export default {
             icone: ''
         },
         item: 1,
-        categorias: ['Comida', 'Saúde', 'Trabalho', 'Finanças', 'Amor', 'Lazer'],
+        categorias: ['Comida', 'Saúde', 'Trabalho', 'Finanças', 'Lazer'],
         items: []
     }),
     methods: {
@@ -118,9 +118,6 @@ export default {
                     break     
                 case 'Finanças':
                     this.addItem.icone = 'mdi-cash'
-                    break
-                case 'Amor':
-                    this.addItem.icone = 'mdi-heart'
                     break
                 case 'Lazer':
                     this.addItem.icone = 'mdi-balloon'

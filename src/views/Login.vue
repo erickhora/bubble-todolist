@@ -6,19 +6,28 @@
           <v-col cols="12" xs="6" class="login-box" v-if="!naoLogado">
             <v-card :elevation="10" class="login-box-form">
               <p class="text-center">Acesse com seu email</p>
-              <v-text-field
-                v-model="email"
-                :rules="emailRules"
-                label="E-mail"
-                required
-                autofocus
-                color="#50435D"
-              ></v-text-field>
-              <div class="d-flex flex-row-reverse">
-                <v-btn rounded small @click="naoLogado = !naoLogado">
-                  <router-link to="/cadastro" class="link-cadastro"> Ir </router-link>
-                </v-btn>
-                 
+              <div v-if="!checandoEmail">
+                <v-text-field
+                  v-model="usuario.email"
+                  :rules="emailRules"
+                  label="E-mail"
+                  required
+                  autofocus
+                  color="#50435D"
+                ></v-text-field>
+                <div class="d-flex flex-row-reverse">
+                  <v-btn rounded small @click="checarEmail" class="link-cadastro">
+                    Ir
+                  </v-btn>
+                </div>
+              </div>
+              <div v-if="checandoEmail" class="text-center mt-5">
+                <v-progress-circular
+                  :size="70"
+                  :width="6"
+                  indeterminate
+                  color="#50435D"
+                ></v-progress-circular>
               </div>
             </v-card>
           </v-col>
@@ -27,14 +36,14 @@
             <v-card :elevation="10" class="login-box-form">
               <p class="text-center">Entrar na conta</p>
               <v-text-field
-                v-model="email"
+                v-model="usuario.email"
                 :rules="emailRules"
                 label="E-mail"
                 required
                 color="#50435D"
               ></v-text-field>
               <v-text-field
-                v-model="senha"
+                v-model="usuario.senha"
                 :append-icon="mostrar ? 'mdi-eye' : 'mdi-eye-off'"
                 :rules="senhaRule"
                 :type="mostrar ? 'text' : 'password'"
@@ -59,8 +68,11 @@
                       this.isActive= false }, 5000);  */
 export default {
   data: () => ({
-    senha: '',
-    email:'',
+    usuario: {
+      senha: '',
+      email:''
+    },
+    checandoEmail: false,
     valid:'',
     naoLogado: false,
     emailRules: [
@@ -71,7 +83,29 @@ export default {
       v => !!v || 'Digite sua senha'
     ]
   
-  })
+  }),
+  methods: {
+    checarEmail () {
+      this.checandoEmail = true
+      this.$http.get('usuarios.json')
+        .then(res => {
+          Object.keys(res.data).forEach(usuario => {
+            if (this.usuario.email == res.data[usuario].email) {
+              console.log(`Email esta no banco de dados`)
+              this.naoLogado = true
+              this.checandoEmail = false
+            } else { 
+              this.$router.push('/cadastro')
+            }
+          })
+        })
+        .catch( err => {
+          console.log(`Email nao encontrado no banco. Erro: ${ err }`)
+          this.checandoEmail = false
+          this.naoLogado = false
+        })
+    }
+  }
 }
 </script>
 
