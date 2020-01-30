@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://localhost:80/'
+axios.defaults.baseURL = 'https://bubble-list-72cfa.firebaseio.com/'
 
-export default Vue.use({
+Vue.use({
     install(Vue) {
         Vue.prototype.$http = axios
     }
