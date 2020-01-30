@@ -88,11 +88,15 @@ export default {
       this.$refs.form.resetValidation();
     },
     cadastrar() {
+
       this.$http.post('usuarios.json', this.usuario)
         // eslint-disable-next-line no-unused-vars
         .then(res => {
           this.usuario = {}
-          console.log(res)
+          this.$router.push('/home')
+        })
+        .catch(err => {
+          console.log(`Erro ${err}`)
         })
     }
   }

@@ -3,7 +3,7 @@
     <v-form  v-model="valid">
       <v-container style="d-flex justify-center align-center">
         
-          <v-col cols="12" xs="6" class="login-box" v-if="!naoLogado">
+          <v-col cols="12" xs="6" class="login-box" v-if="!emailExiste">
             <v-card :elevation="10" class="login-box-form">
               <p class="text-center">Acesse com seu email</p>
               <div v-if="!checandoEmail">
@@ -54,7 +54,7 @@
                 @click:append="mostrar = !mostrar"
               ></v-text-field>
               <div class="d-flex flex-row-reverse">
-                <v-btn rounded small @click="naoLogado = !naoLogado">Ir</v-btn>
+                <v-btn rounded small @click="validarLogin">Ir</v-btn>
               </div>
             </v-card>
           </v-col>
@@ -68,13 +68,14 @@
                       this.isActive= false }, 5000);  */
 export default {
   data: () => ({
+    mostrar: '',
     usuario: {
       senha: '',
       email:''
     },
     checandoEmail: false,
     valid:'',
-    naoLogado: false,
+    emailExiste: false,
     emailRules: [
       v => !!v || 'Digite seu E-mail',
       v => /.+@+.+/.test(v) || 'E-mail deve ser válido'
@@ -89,20 +90,41 @@ export default {
       this.checandoEmail = true
       this.$http.get('usuarios.json')
         .then(res => {
-          Object.keys(res.data).forEach(usuario => {
-            if (this.usuario.email == res.data[usuario].email) {
-              console.log(`Email esta no banco de dados`)
-              this.naoLogado = true
-              this.checandoEmail = false
-            } else { 
-              this.$router.push('/cadastro')
+          let contadorExiste = 0
+          Object.keys(res.data).forEach(id => {
+            if (this.usuario.email == res.data[id].email) {
+              contadorExiste++
             }
           })
+          if (contadorExiste == 1) {
+            this.checandoEmail = false
+            this.emailExiste = true
+          } else {
+            console.log('Email nao encontrado')
+            this.checandoEmail = false
+            this.emailExiste = false
+            this.$router.push('/cadastro')
+          }
         })
         .catch( err => {
           console.log(`Email nao encontrado no banco. Erro: ${ err }`)
           this.checandoEmail = false
           this.naoLogado = false
+        })
+    },
+
+    validarLogin () {
+      this.$http.get('usuarios.json')
+        .then(res => {
+          Object.keys(res.data).forEach(id => {
+            if (this.usuario.email == res.data[id].email) {
+              if(this.usuario.senha == res.data[id].senha) {
+                this.$router.push('/home')
+              } else {
+                console.log('Senha errada')
+              }
+            }
+          }) 
         })
     }
   }
