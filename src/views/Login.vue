@@ -76,7 +76,7 @@ export default {
     valid:'',
     naoLogado: false,
     emailRules: [
-      v => !!v || 'Digite seu e-mail',
+      v => !!v || 'Digite seu E-mail',
       v => /.+@+.+/.test(v) || 'E-mail deve ser válido'
     ],
     senhaRule: [
