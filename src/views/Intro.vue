@@ -8,9 +8,11 @@
               Bubble
          </h1>
         <p v-show="info">
+         
             <router-link to="/login" class="intro-logo-link">
              acesse >>  
             </router-link> 
+           
         </p>
         <p class="intro-logo-info"
           v-show="!info">

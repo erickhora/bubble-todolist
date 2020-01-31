@@ -1,6 +1,6 @@
 <template>
   <v-app id="cadastro">
-    <v-form class="formulario" ref="form" v-model="valid" lazy-validation>
+    <v-form class="formulario" ref="form" v-model="valid" :lazy-validation="lazy">
       <v-card elevation="20">
         <p class="text-center pt-8 font-weight-bold title mb-0">cadastrar ?</p>
         <div class="formulario-input">
@@ -47,7 +47,7 @@
           </v-btn>
 
           <!-- adicionar a classe link-cadastro quando adicionar o router-link -->
-          <v-btn rounded x-small class="mb-5 link-cadastro" @click="cadastrar">Cadastrar</v-btn>
+          <v-btn rounded x-small class="mb-5 link-cadastro" @click="cadastrar" :disabled="!valid">Cadastrar</v-btn>
         </div>
       </v-card>
     </v-form>
