@@ -57,7 +57,6 @@ export default {
 
   #intro{
       background-color: #50435D;
-      background-image: url('../assets/Celular_Android_–_12.svg');
       background-size: cover;
       overflow: hidden;
       background-position-y: bottom;

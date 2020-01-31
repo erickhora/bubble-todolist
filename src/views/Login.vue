@@ -146,7 +146,6 @@ export default {
 
   #login {
     background-color: #50435D;
-    background-image: url('../assets/Celular_Android_–_12.svg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position-y: bottom;

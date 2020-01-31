@@ -128,7 +128,6 @@ export default {
 
 #cadastro {
   background-color: #50435d;
-  background-image: url("../assets/Celular_Android_–_12.svg");
   background-size: cover;
   background-repeat: no-repeat;
 }

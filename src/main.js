@@ -5,7 +5,8 @@ import router from './router'
 import vuetify from './plugins/vuetify'
 import './plugins/axios'
 import '@babel/polyfill'
-
+import VueParticles from 'vue-particles'
+Vue.use(VueParticles)
 Vue.config.productionTip = false
 
 export const bus = new Vue();
