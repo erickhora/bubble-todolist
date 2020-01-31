@@ -93,7 +93,8 @@ export default {
         // eslint-disable-next-line no-unused-vars
         .then(res => {
           this.usuario = {}
-          this.$router.push('/home')
+          console.log(res.data.name)
+          this.$router.push('/home/' + res.data.name)
         })
         .catch(err => {
           console.log(`Erro ${err}`)
