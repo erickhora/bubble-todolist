@@ -1,6 +1,6 @@
 <template>
   <v-app id="login">
-    <v-form  v-model="valid">
+    <v-form  v-model="valid" :lazy-validation="lazy">
       <v-container style="d-flex justify-center align-center">
         
           <v-col cols="12" xs="6" class="login-box" v-if="!emailExiste">
@@ -16,7 +16,7 @@
                   color="#50435D"
                 ></v-text-field>
                 <div class="d-flex flex-row-reverse">
-                  <v-btn rounded small @click="checarEmail" class="link-cadastro">
+                  <v-btn rounded small @click="checarEmail" class="link-cadastro" :disabled="!valid">
                     Ir
                   </v-btn>
                 </div>
@@ -54,7 +54,7 @@
                 @click:append="mostrar = !mostrar"
               ></v-text-field>
               <div class="d-flex flex-row-reverse">
-                <v-btn rounded small @click="validarLogin">Ir</v-btn>
+                <v-btn rounded small @click="validarLogin" :disabled="!valid">Ir</v-btn>
               </div>
             </v-card>
           </v-col>
