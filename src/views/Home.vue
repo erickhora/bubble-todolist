@@ -76,7 +76,6 @@
 
 <script>
 import Navbar from '../components/Navbar.vue'
-import barramento from '@/barramento'
 
 export default {
     components: {'app-navbar': Navbar},
@@ -84,7 +83,10 @@ export default {
     data: () => ({
         dialog: false,
         dialog2: false,
-        email: '',
+        usuario: {
+            nome: '',
+            tarefas: []
+        },
         valid: '',
         icone: "mdi-emoticon-happy-outline",
         j: 0,
@@ -107,8 +109,6 @@ export default {
         categorias: ['Comida', 'Saúde', 'Trabalho', 'Finanças', 'Lazer'],
         items: []
     }),
-
-    props: ['email'],
 
     methods: {
         submit() {
@@ -146,10 +146,10 @@ export default {
     },
 
     created () {
-        barramento.$on('email', email => {
-            this.email = email
-            console.log(this.email)
-        })
+        this.$http.get('usuarios/' + this.$route.params.id)
+            .then(res => {
+                console.log(res)
+            })    
     }
 }
 </script>

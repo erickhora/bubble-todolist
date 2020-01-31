@@ -84,8 +84,6 @@ export default {
   
   }),
 
-  props: [],
-
   methods: {
     checarEmail () {
       this.checandoEmail = true
@@ -121,7 +119,7 @@ export default {
             if (this.usuario.email == res.data[id].email) {
               if(this.usuario.senha == res.data[id].senha) {
                 this.$emit('email', this.usuario.email)
-                this.$router.push('/home')
+                this.$router.push('/home/' + id)
               } else {
                 console.log('Senha errada')
               }
