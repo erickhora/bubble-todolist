@@ -148,7 +148,6 @@ export default {
     background-color: #50435D;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position-y: bottom;
   }
 
   .login-box {

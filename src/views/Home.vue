@@ -177,8 +177,12 @@ export default {
         color: #A09E9E;
     }
 
+.theme--light.v-application {
+    background: #efefef;
+    color: rgba(0,0,0,.87);
+}
     .theme--light.v-list {
-        background: #fafafa;
+        background: #b8b6b6;
     }
 
     .v-list--rounded {

@@ -59,7 +59,6 @@ export default {
       background-color: #50435D;
       background-size: cover;
       overflow: hidden;
-      background-position-y: bottom;
   }
   .intro-logo{
       display: flex;

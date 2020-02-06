@@ -1,6 +1,14 @@
 <template>
   <v-app>
-    <vue-particles color="#FFFFFF"  :lineOpacity="0" :particleSize="30"  :particleOpacity="0.9" :particlesNumber="20" class="background"></vue-particles>
+    <vue-particles color="#FFFFFF" 
+        :lineOpacity="0"
+        :particleSize="30"
+        :particleOpacity="0.9"
+        :moveSpeed="5"
+        :shapeType="circle"
+        :particlesNumber="20"
+         class="background">
+    </vue-particles>
      <router-view></router-view> 
   </v-app>
 </template>
