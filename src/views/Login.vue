@@ -107,6 +107,7 @@ export default {
         .catch( err => {
           this.checandoEmail = false
           this.naoLogado = false
+          throw err
         })
     },
 
