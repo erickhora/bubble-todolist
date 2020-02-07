@@ -2,11 +2,11 @@
   <v-app>
     <vue-particles color="#FFFFFF" 
         :lineOpacity="0"
-        :particleSize="30"
-        :particleOpacity="0.9"
+        :particleSize="80"
+        :particleOpacity="0.25"
         :moveSpeed="5"
         :shapeType="circle"
-        :particlesNumber="20"
+        :particlesNumber="15"
          class="background">
     </vue-particles>
      <router-view></router-view> 
