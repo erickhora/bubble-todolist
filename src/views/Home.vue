@@ -146,10 +146,9 @@ export default {
     },
 
     created () {
-        this.$http.get('usuarios/' + this.$route.params.id)
-            .then(res => {
-                console.log(res.data)
-            })    
+        // this.$http.get('usuarios/' + this.$route.params.id)
+        //     .then(res => {
+        //     })    
     }
 }
 </script>
