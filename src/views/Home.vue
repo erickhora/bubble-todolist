@@ -9,7 +9,7 @@
 
         <v-container id="home-semTarefas" v-if="items.length == 0" class="mt-5 mb-5 text-center">
             <h3>Você não tem nenhuma tarefa hoje!</h3>
-            <v-icon size="5rem" class="d-block">mdi-emoticon-happy-outline</v-icon>
+            <v-icon size="5rem" class="d-block v-step-1" >mdi-emoticon-happy-outline</v-icon>
             <h4 class="mt-5">Crie uma nova tarefa abaixo!</h4>
         </v-container>
 
@@ -28,7 +28,7 @@
                             </v-list-item>
                         </v-list-item-group>
                     </template>
-                    <v-card v-model="itemsAtualizados">
+                    <v-card v-model="itemsAtualizados" >
                         <v-card-title>
                             {{ itemsAtualizados[j].titulo }}
                         </v-card-title>
@@ -49,11 +49,11 @@
             <v-dialog v-model="dialog2" persistent>
                 <template v-slot:activator="{ on }">
                     <v-btn class="mx-2" fab large v-on="on">
-                        <v-icon dark>mdi-plus</v-icon>
+                        <v-icon dark id="v-step-2">mdi-plus</v-icon>
                     </v-btn>
                 </template>
                 <v-card>
-                    <v-card-title>Nova Tarefa</v-card-title>
+                    <v-card-title id="v-step-3">Nova Tarefa</v-card-title>
                     <v-card-text>
                         <v-form v-model="valid">
                             <v-text-field v-model="addItem.titulo" :rules="tituloRules" :counter="20" label="Titulo" required></v-text-field>
@@ -65,12 +65,13 @@
                     <v-card-actions>
                         <v-spacer></v-spacer>
                         <v-btn color="danger" @click="dialog2 = false">Cancelar</v-btn>
-                        <v-btn submit @click="dialog2 = false; submit()">Salvar</v-btn>
+                        <v-btn submit @click="dialog2 = false; submit()" id="v-step-4">Salvar</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-dialog>
         </v-container>
       </v-col>
+      <v-tour name="myTour" :steps="steps" :options="myOptions"></v-tour>
   </v-app>
 </template>
 
@@ -107,8 +108,37 @@ export default {
         },
         item: 1,
         categorias: ['Comida', 'Saúde', 'Trabalho', 'Finanças', 'Lazer'],
-        items: []
+        items: [],
+        myOptions: {
+        labels: {
+            buttonSkip: 'Pular tour',
+            buttonPrevious: 'Anterior',
+            buttonNext: 'Próximo',
+            buttonStop: 'Finalizar'
+            }
+        },
+        steps: [
+          {
+            target: '.v-step-1',
+            content: 'Vamos fazer um Tour rápido, siga os passos :)'
+          },
+          {
+            target: '#v-step-2',  // We're using document.querySelector() under the hood
+            content: `Clique no + para criar novas tarefas :D`
+          },
+          {
+            target: '#v-step-3',  // We're using document.querySelector() under the hood
+            content: `Hey, preencha todos os dados da sua tarefa`
+          },
+          {
+            target: '#v-step-4',  // We're using document.querySelector() under the hood
+            content: `Aperte aqui para <strong> salvar </strong> a sua tarefa`
+          }
+        ]
     }),
+    mounted: function () {
+      this.$tours['myTour'].start()
+    },
 
     methods: {
         submit() {

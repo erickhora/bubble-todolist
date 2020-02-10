@@ -1,6 +1,6 @@
 <template>
   <v-app id="login">
-    <v-form  v-model="valid" :lazy-validation="lazy">
+    <v-form  v-model="valid" :lazy-validation="true">
       <v-container style="d-flex justify-center align-center">
         
           <v-col cols="12" xs="6" class="login-box" v-if="!emailExiste">
