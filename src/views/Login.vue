@@ -99,16 +99,15 @@ export default {
             this.checandoEmail = false
             this.emailExiste = true
           } else {
-            console.log('Email nao encontrado')
             this.checandoEmail = false
             this.emailExiste = false
             this.$router.push('/cadastro')
           }
         })
         .catch( err => {
-          console.log(`Email nao encontrado no banco. Erro: ${ err }`)
           this.checandoEmail = false
           this.naoLogado = false
+          throw err
         })
     },
 
@@ -120,8 +119,6 @@ export default {
               if(this.usuario.senha == res.data[id].senha) {
                 this.$emit('email', this.usuario.email)
                 this.$router.push('/home/' + id)
-              } else {
-                console.log('Senha errada')
               }
             }
           }) 

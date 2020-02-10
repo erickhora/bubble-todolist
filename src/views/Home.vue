@@ -65,7 +65,7 @@
                     <v-card-actions>
                         <v-spacer></v-spacer>
                         <v-btn color="danger" @click="dialog2 = false">Cancelar</v-btn>
-                        <v-btn submit @click="dialog2 = false; submit()" id="v-step-4">Salvar</v-btn>
+                        <v-btn submit @click="dialog2 = false; salvarTarefa()" id="v-step-4">Salvar</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-dialog>
@@ -141,7 +141,7 @@ export default {
     },
 
     methods: {
-        submit() {
+        salvarTarefa() {
             switch(this.addItem.categoria) {
                 case 'Comida':
                     this.addItem.icone = 'mdi-food'
@@ -176,10 +176,9 @@ export default {
     },
 
     created () {
-        this.$http.get('usuarios/' + this.$route.params.id)
-            .then(res => {
-                console.log(res)
-            })    
+        // this.$http.get('usuarios/' + this.$route.params.id)
+        //     .then(res => {
+        //     })    
     }
 }
 </script>

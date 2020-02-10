@@ -5,7 +5,6 @@
         :particleSize="80"
         :particleOpacity="0.25"
         :moveSpeed="5"
-        :shapeType="circle"
         :particlesNumber="15"
          class="background">
     </vue-particles>
