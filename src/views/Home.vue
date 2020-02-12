@@ -176,9 +176,10 @@ export default {
     },
 
     created () {
-        // this.$http.get('usuarios/' + this.$route.params.id)
-        //     .then(res => {
-        //     })    
+        this.$http.get('usuarios/' + this.$route.params.id + '.json')
+            .then(res => {
+                console.log(res);
+            })    
     }
 }
 </script>

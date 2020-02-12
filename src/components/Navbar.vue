@@ -43,7 +43,7 @@
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
+            <v-list-item-title @click="logout($event)">{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -60,11 +60,18 @@ export default {
         drawer: false,
         items: [
           { title: 'Meus dados', icon: 'mdi-account' },
-          { title: 'Privacidade', icon: 'mdi-lock' },
-          { title: 'Calendário', icon: 'mdi-calendar-month' },
+          { title: 'Sair', icon: 'mdi-exit-to-app'}
         ],
       }
     },
+
+    methods: {
+      logout(event) {
+        if(event.target.innerText == "Sair") {
+          this.$router.push('/')
+        }
+      }
+    }
   }
 </script>
 
