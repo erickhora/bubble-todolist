@@ -117,7 +117,6 @@ export default {
           Object.keys(res.data).forEach(id => {
             if (this.usuario.email == res.data[id].email) {
               if(this.usuario.senha == res.data[id].senha) {
-                this.$emit('email', this.usuario.email)
                 this.$router.push('/home/' + id)
               }
             }

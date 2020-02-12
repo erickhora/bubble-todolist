@@ -178,7 +178,11 @@ export default {
     created () {
         this.$http.get('usuarios/' + this.$route.params.id + '.json')
             .then(res => {
-                console.log(res);
+                const array = []
+                for(const chave in res.data){
+                    array.push({id:chave, ...res.data[chave]})
+                }
+                console.log("res.data: "+ array)
             })    
     }
 }

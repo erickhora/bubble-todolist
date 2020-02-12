@@ -6,10 +6,5 @@ axios.defaults.baseURL = 'https://bubble-list-72cfa.firebaseio.com/'
 Vue.use({
     install(Vue) {
         Vue.prototype.$http = axios
-
-        Vue.prototype.$http.interceptors.request.use(config => {
-            console.log(config.method)
-            return config
-        })
     }
 })
