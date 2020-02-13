@@ -1,5 +1,9 @@
 <template>
   <v-app id="cadastro">
+
+    <h1 class="intro-logo-bubble">
+              Bubble
+         </h1>
     <v-form class="formulario" ref="form" v-model="valid" :lazy-validation="lazy">
       <v-card elevation="20">
         <p class="text-center pt-8 font-weight-bold title mb-0">cadastrar ?</p>
@@ -119,7 +123,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20vh;
+  margin-top: 2vh;
   padding: 5px;
 }
 
@@ -147,5 +151,15 @@ export default {
   font-size: 0.75rem;
   text-decoration: none;
 }
+
+.intro-logo-bubble{
+    display:flex;
+    justify-content: center;
+    color: white;
+    font-family: 'Amatic SC', cursive;
+    font-size: 3rem;
+    font-weight: normal;
+     margin-top: 2vh;
+  }
 </style>
    
