@@ -96,7 +96,7 @@ export default {
         usuario: {
             nome: ''
         },
-        valid: 'true',
+        valid: '',
         icone: "mdi-emoticon-happy-outline",
         j: 0,
         tituloRules: [
