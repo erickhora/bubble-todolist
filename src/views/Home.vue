@@ -38,6 +38,7 @@
                         <v-divider></v-divider>
                         <v-card-actions>
                             <v-spacer></v-spacer>
+                            
                             <v-btn color="danger" text @click="dialog = false; excluirTarefa(items[j], j)">Excluir</v-btn>
                             <v-btn color="primary" text @click="dialog =false">Fechar</v-btn>
                         </v-card-actions>
@@ -85,8 +86,7 @@ export default {
         dialog: false,
         dialog2: false,
         usuario: {
-            nome: '',
-            tarefas: []
+            nome: ''
         },
         valid: '',
         icone: "mdi-emoticon-happy-outline",
@@ -160,7 +160,7 @@ export default {
                     this.addItem.icone = 'mdi-balloon'
                     break            
             }
-            
+
             this.$http.post('tarefas.json', { idUser: this.$route.params.id, ...this.addItem })
                 .then((res) => {
                     this.items.push(
@@ -170,6 +170,13 @@ export default {
                             id: res.data.name
                         }
                     )
+                    this.addItem = {
+                        id: '',
+                        titulo: '',
+                        conteudo: '',
+                        categoria: '',
+                        icone: ''
+                    }
                 })
         },
 

@@ -4,7 +4,7 @@
     <h1 class="intro-logo-bubble">
               Bubble
          </h1>
-    <v-form class="formulario" ref="form" v-model="valid" :lazy-validation="lazy">
+    <v-form class="formulario" ref="form" v-model="valid" :lazy-validation="true">
       <v-card elevation="20">
         <p class="text-center pt-8 font-weight-bold title mb-0">cadastrar ?</p>
         <div class="formulario-input">
