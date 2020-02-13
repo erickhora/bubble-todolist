@@ -2,7 +2,9 @@
   <v-app id="login">
     <v-form  v-model="valid" :lazy-validation="true">
       <v-container style="d-flex justify-center align-center">
-        
+         <h1 class="intro-logo-bubble">
+              Bubble
+         </h1>
           <v-col cols="12" xs="6" class="login-box" v-if="!emailExiste">
             <v-card :elevation="10" class="login-box-form">
               <p class="text-center">Acesse com seu email</p>
@@ -152,7 +154,7 @@ export default {
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    margin-top: 30vh;
+    margin-top: 10vh;
   }
 
   .login-box-form {
@@ -172,5 +174,15 @@ export default {
     color:white;
     font-size: .75rem;
     text-decoration: none;
+  }
+
+  .intro-logo-bubble{
+    display:flex;
+    justify-content: center;
+    color: white;
+    font-family: 'Amatic SC', cursive;
+    font-size: 5rem;
+    font-weight: normal;
+     margin-top: 10vh;
   }
 </style>
