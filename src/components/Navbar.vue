@@ -56,7 +56,6 @@
 export default {
     data () {
       return {
-        nome:"Fulano",
         drawer: false,
         items: [
           { title: 'Meus dados', icon: 'mdi-account' },
@@ -64,6 +63,8 @@ export default {
         ],
       }
     },
+
+    props: ['nome'],
 
     methods: {
       logout(event) {

@@ -1,6 +1,6 @@
 <template>
   <v-app id="home">
-      <app-navbar/>
+      <app-navbar :nome="usuario.nome" />
       <v-col class="col-xs-12 home-body">
           
         <v-container id="home-dia" class="pa-0">
@@ -178,11 +178,14 @@ export default {
     created () {
         this.$http.get('usuarios/' + this.$route.params.id + '.json')
             .then(res => {
-                const array = []
-                for(const chave in res.data){
-                    array.push({id:chave, ...res.data[chave]})
+                let array = {}
+                console.log(res.data)
+                array = {
+                    id: this.$route.params.id,
+                    ...res.data
                 }
-                console.log("res.data: "+ array)
+                this.usuario.nome = array.nome 
+                console.log("res.data: ", array)
             })    
     }
 }
