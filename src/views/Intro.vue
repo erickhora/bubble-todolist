@@ -1,8 +1,8 @@
 <template>
     <v-app id="intro">
         <!-- splash screen -->
-    <div class="intro-splash" v-show="isActive" @click="isActive = !isActive">
-    </div> 
+    <!-- <div class="intro-splash" v-show="isActive" @click="isActive = !isActive">
+    </div>  -->
     <div class="intro-logo"> 
          <h1 class="intro-logo-bubble" @click="info=!info" v-show="info">
               Bubble
@@ -36,7 +36,14 @@ export default {
   data: () => ({
     isActive:true,
     info:true
-  })
+  }),
+  
+   created() {
+    const idUser = localStorage.getItem('idUser')
+    if(idUser) {
+      this.$router.push('/home/' + idUser)
+    }
+  }
 }
 </script>
 

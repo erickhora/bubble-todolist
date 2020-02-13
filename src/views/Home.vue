@@ -28,17 +28,17 @@
                             </v-list-item>
                         </v-list-item-group>
                     </template>
-                    <v-card v-model="itemsAtualizados" >
+                    <v-card v-model="items" >
                         <v-card-title>
-                            {{ itemsAtualizados[j].titulo }}
+                            {{ items[j].titulo }}
                         </v-card-title>
                         <v-card-text>
-                            {{ itemsAtualizados[j].conteudo }}
+                            {{ items[j].conteudo }}
                         </v-card-text>
                         <v-divider></v-divider>
                         <v-card-actions>
                             <v-spacer></v-spacer>
-                            <v-btn color="danger" text @click="dialog = false">Excluir</v-btn>
+                            <v-btn color="danger" text @click="dialog = false; excluirTarefa(items[j], j)">Excluir</v-btn>
                             <v-btn color="primary" text @click="dialog =false">Fechar</v-btn>
                         </v-card-actions>
                     </v-card>
@@ -101,6 +101,7 @@ export default {
             v => !!v || 'Escolha uma categoria para a tarefa'
         ],
         addItem: {
+            id: '',
             titulo: '',
             conteudo: '',
             categoria: '',
@@ -159,13 +160,25 @@ export default {
                     this.addItem.icone = 'mdi-balloon'
                     break            
             }
-            this.items.push(this.addItem);
-            this.addItem = {
-                titulo: '',
-                conteudo: '',
-                categoria: '',
-                icone: ''
-            }
+            
+            this.$http.post('tarefas.json', { idUser: this.$route.params.id, ...this.addItem })
+                .then((res) => {
+                    this.items.push(
+                        {
+                            idUser: this.$route.params.id, 
+                            ...this.addItem,
+                            id: res.data.name
+                        }
+                    )
+                })
+        },
+
+        excluirTarefa(item, i) {
+            this.$http.delete('/tarefas/' + item.id + '.json')
+                .then(() => {
+                    this.items.splice(i, 1)
+                    console.log(this.items);
+                })            
         }
     },
 
@@ -179,14 +192,20 @@ export default {
         this.$http.get('usuarios/' + this.$route.params.id + '.json')
             .then(res => {
                 let array = {}
-                console.log(res.data)
                 array = {
                     id: this.$route.params.id,
                     ...res.data
                 }
                 this.usuario.nome = array.nome 
-                console.log("res.data: ", array)
-            })    
+            })
+
+        this.$http.get('tarefas.json?idUser=' + this.$route.params.id)
+            .then(res => {
+                this.items = []
+                for( let id in res.data ) {
+                    this.items.push(res.data[id])
+                }
+            })
     }
 }
 </script>
@@ -218,9 +237,9 @@ export default {
     background: #efefef;
     color: rgba(0,0,0,.87);
 }
-    .theme--light.v-list {
+    /* .theme--light.v-list {
         background: #b8b6b6;
-    }
+    } */
 
     .v-list--rounded {
         padding: 0;

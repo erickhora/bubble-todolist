@@ -70,6 +70,7 @@ export default {
       logout(event) {
         if(event.target.innerText == "Sair") {
           this.$router.push('/')
+          localStorage.setItem('idUser', '')
         }
       }
     }

@@ -118,6 +118,7 @@ export default {
             if (this.usuario.email == res.data[id].email) {
               if(this.usuario.senha == res.data[id].senha) {
                 this.$router.push('/home/' + id)
+                localStorage.setItem('idUser', id)
               }
             }
           }) 
