@@ -56,8 +56,16 @@
                 <v-card>
                     <v-card-title id="v-step-3">Nova Tarefa</v-card-title>
                     <v-card-text>
-                        <v-form v-model="valid">
-                            <v-text-field v-model="addItem.titulo" :rules="tituloRules" :counter="20" label="Titulo" required></v-text-field>
+                        <v-form v-model="valid" :lazy-validation="false">
+                            <v-text-field
+                                v-model="addItem.titulo" 
+                                :rules="tituloRules" 
+                                :counter="20" 
+                                label="Titulo" 
+                                required
+                                autofocus>
+                            </v-text-field>
+
                             <v-textarea v-model="addItem.conteudo" :rules="conteudoRules" :counter="120" label="Descrição" required></v-textarea>
                             <v-select v-model="addItem.categoria" :rules="categoriaRules" :items="categorias" label="Selecione uma categoria" required></v-select>
                         </v-form>
@@ -66,7 +74,7 @@
                     <v-card-actions>
                         <v-spacer></v-spacer>
                         <v-btn color="danger" @click="dialog2 = false">Cancelar</v-btn>
-                        <v-btn submit @click="dialog2 = false; salvarTarefa()" id="v-step-4">Salvar</v-btn>
+                        <v-btn submit @click="dialog2 = false; salvarTarefa()" id="v-step-4"  :disabled="!valid" >Salvar</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-dialog>
@@ -88,7 +96,7 @@ export default {
         usuario: {
             nome: ''
         },
-        valid: '',
+        valid: 'true',
         icone: "mdi-emoticon-happy-outline",
         j: 0,
         tituloRules: [
