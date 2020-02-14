@@ -44,7 +44,6 @@ export default {
                     nome: array.nome,
                     usuario: array.usuario
                 }
-                console.log(this.usuario)
             })
     }
 }
