@@ -192,7 +192,6 @@ export default {
             this.$http.delete('/tarefas/' + item.id + '.json')
                 .then(() => {
                     this.items.splice(i, 1)
-                    console.log(this.items);
                 })            
         }
     },

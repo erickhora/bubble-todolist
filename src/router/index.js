@@ -4,6 +4,7 @@ import Login from '../views/Login.vue'
 import Cadastro from '../views/Cadastro.vue'
 import Intro from '../views/Intro.vue'
 import Home from '../views/Home.vue'
+import MeusDados from '../views/MeusDados.vue'
 
 
 Vue.use(VueRouter)
@@ -29,6 +30,11 @@ const routes = [
     path:'/home/:id',
     name:'Home',
     component:Home
+  },
+  {
+    path: '/home/:id/meus-dados',
+    name: 'MeusDados',
+    component:MeusDados
   }
 ]
 

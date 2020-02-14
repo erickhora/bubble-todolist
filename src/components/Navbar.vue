@@ -43,7 +43,7 @@
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title @click="logout($event)">{{ item.title }}</v-list-item-title>
+            <v-list-item-title @click="optionSelected($event)">{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -58,6 +58,7 @@ export default {
       return {
         drawer: false,
         items: [
+          { title: 'Início', icon: 'mdi-home'},
           { title: 'Meus dados', icon: 'mdi-account' },
           { title: 'Sair', icon: 'mdi-exit-to-app'}
         ],
@@ -67,10 +68,16 @@ export default {
     props: ['nome'],
 
     methods: {
-      logout(event) {
+      optionSelected(event) {
         if(event.target.innerText == "Sair") {
           this.$router.push('/')
           localStorage.setItem('idUser', '')
+        }
+        if(event.target.innerText == "Meus dados") {
+          this.$router.push('/home/' + this.$route.params.id + '/meus-dados')
+        }
+        if(event.target.innerText == "Início") {
+          this.$router.push('/home/' + this.$route.params.id)
         }
       }
     }
@@ -81,7 +88,7 @@ export default {
  @import url('https://fonts.googleapis.com/css?family=Amatic+SC&display=swap');
 
 .title{
-  margin-left: 8vh;
+  margin-left: 5vh;
   font-family: 'Amatic SC', cursive !important;
 }
 
